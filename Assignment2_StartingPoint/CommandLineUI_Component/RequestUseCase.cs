@@ -1,6 +1,6 @@
 ﻿namespace CommandLineUI
 {
-    interface RequestUseCase
+    public interface RequestUseCase
     {
 
         public const int INITIALISE_DATABASE = 0;

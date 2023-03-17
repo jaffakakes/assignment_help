@@ -26,9 +26,12 @@ namespace AssignWpf
                 int number2 = int.Parse(numberTextBox2.Text);
 
                 CommandFactory commandFactory = new CommandFactory();
-                Command command = commandFactory.CreateCommand(SelectedCommand);
+                Command command = commandFactory.CreateCommand(SelectedCommand, number1, number2);
 
-                // Execute the command and get the result
+                // Execute the command
+                command.Execute();
+
+                // Get the result
                 string result = command.GetResult();
 
                 // Set the response

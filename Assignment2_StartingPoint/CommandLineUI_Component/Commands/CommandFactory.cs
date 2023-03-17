@@ -20,10 +20,10 @@
                     return new InitialiseDatabaseCommand();
 
                 case RequestUseCase.RENEW_LOAN:
-                    return new RenewLoanCommand();
+                    return new RenewLoanCommand(number1, number2);
 
                 case RequestUseCase.RETURN_BOOK:
-                    return new ReturnBookCommand();
+                    return new ReturnBookCommand(number1, number2);
 
                 case RequestUseCase.VIEW_ALL_BOOKS:
                     return new ViewAllBooksCommand();

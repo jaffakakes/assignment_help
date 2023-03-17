@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using CommandLineUI.Menu;
+using CommandLineUI;
 using CommandLineUI.Commands;
-
 namespace AssignWpf
 {
     public partial class MainWindow : Window
@@ -27,11 +27,18 @@ namespace AssignWpf
             {
                 MenuItems menuItem = (MenuItems)menuListBox.SelectedItem;
 
-                if (menuItem.Id == RequestUseCase.EXIT)
+                CommandFactory commandFactory = new CommandFactory();
+
+                if (menuItem.Id == RequestUseCase.VIEW_ALL_BOOKS ||
+                    menuItem.Id == RequestUseCase.VIEW_ALL_MEMBERS ||
+                    menuItem.Id == RequestUseCase.VIEW_CURRENT_LOANS)
                 {
-                    this.Close(); // Close the main window
+                    Command command = commandFactory.CreateCommand(menuItem.Id);
+                    command.Execute();
+                    string result = command.GetResult();
+                    responseTextBlock.Text = result;
                 }
-                else
+                else if(menuItem.Id == RequestUseCase.BORROW_BOOK || menuItem.Id == RequestUseCase.RETURN_BOOK || menuItem.Id == RequestUseCase.RENEW_LOAN)
                 {
                     PopupWindow popupWindow = new PopupWindow(this);
                     popupWindow.SelectedCommand = menuItem.Id; // Set the selected command
@@ -41,6 +48,10 @@ namespace AssignWpf
                     {
                         responseTextBlock.Text = popupWindow.Response;
                     }
+                }
+                else if(menuItem.Id == RequestUseCase.EXIT)
+                {
+                    this.Close();
                 }
 
                 menuListBox.SelectedItem = null; // Deselect the item in the ListBox
