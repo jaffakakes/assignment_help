@@ -1,10 +1,12 @@
 ﻿using Controllers;
 using CommandLineUI.Presenters;
+using MySqlX.XDevAPI.Common;
 
 namespace CommandLineUI.Commands
 {
     class RenewLoanCommand : Command
     {
+        private string result;
 
         public RenewLoanCommand()
         {
@@ -21,7 +23,12 @@ namespace CommandLineUI.Commands
             CommandLineViewData data =
                 (CommandLineViewData)controller.Execute();
 
-            ConsoleWriter.WriteStrings(data.ViewData);
+            result = string.Join(Environment.NewLine, data.ViewData);
+        }
+
+        public string GetResult()
+        {
+            return result;
         }
     }
 }

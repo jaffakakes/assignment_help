@@ -1,15 +1,15 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 
 namespace CommandLineUI.Menu
 {
-
     // This class implements the Composite design pattern
-    class Menu : MenuElement
+    public class Menus : MenuElement
     {
         private List<MenuElement> children;
+        public IReadOnlyList<MenuElement> Children => children;
 
-        public Menu(string text) : base(-1, text)
+        public Menus(string text) : base(-1, text)                                  
         {
             children = new List<MenuElement>();
         }
@@ -21,13 +21,8 @@ namespace CommandLineUI.Menu
 
         public override void Print(string indent)
         {
-            Console.WriteLine("\n{0}{1}", indent, Text);
-            Console.WriteLine("{0}{1}", indent, "".PadLeft(Text.Length, '='));
-
-            foreach (MenuElement item in children)
-            {
-                item.Print(indent + "    ");
-            }
-        }
+            // Provide an empty implementation for the Print method
+            // You can implement the desired functionality here as needed
+        }                                                                                                    
     }
 }

@@ -1,27 +1,37 @@
 ﻿using Controllers;
 using CommandLineUI.Presenters;
+using MySqlX.XDevAPI.Common;
 
 namespace CommandLineUI.Commands
 {
-    class BorrowBookCommand : Command
+    public class BorrowBookCommand : Command
     {
+        private int _memberId;
+        private int _bookId;
+        private string _result;
 
-        public BorrowBookCommand()
+        public BorrowBookCommand(int memberId, int bookId)
         {
+            _memberId = memberId;
+            _bookId = bookId;
         }
 
         public void Execute()
         {
-            BorrowBookController controller = 
-                new BorrowBookController(
-                    ConsoleReader.ReadInt("\nMember ID"),
-                    ConsoleReader.ReadInt("Book ID"),
-                    new MessagePresenter());
+            BorrowBookController controller =
+                new BorrowBookController(_memberId, _bookId, new MessagePresenter());
 
-            CommandLineViewData data = 
+            CommandLineViewData data =
                 (CommandLineViewData)controller.Execute();
 
-            ConsoleWriter.WriteStrings(data.ViewData);
+            // Assuming data.ViewData is a List<string>
+            _result = string.Join(Environment.NewLine, data.ViewData);
+        }
+
+        public string GetResult()
+        {
+            return _result;
         }
     }
+
 }

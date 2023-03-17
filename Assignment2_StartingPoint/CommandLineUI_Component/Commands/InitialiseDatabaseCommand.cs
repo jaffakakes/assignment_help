@@ -1,10 +1,12 @@
 ﻿using Controllers;
 using CommandLineUI.Presenters;
+using MySqlX.XDevAPI.Common;
 
 namespace CommandLineUI.Commands
 {
     class InitialiseDatabaseCommand : Command
     {
+        private string result;
 
         public InitialiseDatabaseCommand()
         {
@@ -19,7 +21,12 @@ namespace CommandLineUI.Commands
             CommandLineViewData data =
                 (CommandLineViewData)controller.Execute();
 
-            ConsoleWriter.WriteStrings(data.ViewData);
+            result = string.Join(Environment.NewLine, data.ViewData);
+        }
+
+        public string GetResult()
+        {
+            return result;
         }
     }
 }

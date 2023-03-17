@@ -4,6 +4,7 @@ namespace CommandLineUI.Commands
 {
     class NullCommand : Command
     {
+        private string result;
 
         public NullCommand()
         {
@@ -11,9 +12,17 @@ namespace CommandLineUI.Commands
 
         public void Execute()
         {
-            ConsoleWriter.WriteStrings(
-                new List<string>()
-                    {"Menu choice not recognised"});
+            List<string> messages = new List<string>() { "Menu choice not recognised" };
+            ConsoleWriter.WriteStrings(messages);
+
+            // Store the result as a single string
+            result = string.Join(Environment.NewLine, messages);
+        }
+
+        public string GetResult()
+        {
+            return result;
         }
     }
 }
+

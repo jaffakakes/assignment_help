@@ -1,7 +1,8 @@
 ﻿namespace CommandLineUI.Commands
 {
-    interface Command
+   public interface Command
     {
         void Execute();
+        string GetResult();
     }
 }

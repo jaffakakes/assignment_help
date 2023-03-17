@@ -2,12 +2,13 @@
 
 namespace CommandLineUI.Menu
 {
-    class MenuItem : MenuElement
+    public class MenuItems : MenuElement
     {
+        public int Id { get; private set; }
 
-        public MenuItem(int id, string text) : base(id, text)
+        public MenuItems(int id, string text) : base(id, text)
         {
-
+            Id = id;
         }
 
         public override void Print(string indent)

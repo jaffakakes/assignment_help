@@ -1,18 +1,20 @@
 ﻿namespace CommandLineUI.Commands
 {
-    class CommandFactory
+    public class CommandFactory
     {
+
+
 
         public CommandFactory()
         {
         }
 
-        public Command CreateCommand(int menuChoice)
+        public Command CreateCommand(int menuChoice, int number1 = 0, int number2 = 0)
         {
             switch (menuChoice)
             {
                 case RequestUseCase.BORROW_BOOK:
-                    return new BorrowBookCommand();
+                    return new BorrowBookCommand(number1, number2);
 
                 case RequestUseCase.INITIALISE_DATABASE:
                     return new InitialiseDatabaseCommand();

@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2_StartingPoint", "Assignment2_StartingPoint\Assignment2_StartingPoint.csproj", "{FE22E05F-8E7B-4E9F-802D-36F55BAA0DA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment2_StartingPoint_Tests", "Assignment2_StartingPoint_Tests\Assignment2_StartingPoint_Tests.csproj", "{12353BB1-9DD5-4217-BAFD-3309A0F4F64C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2_StartingPoint_Tests", "Assignment2_StartingPoint_Tests\Assignment2_StartingPoint_Tests.csproj", "{12353BB1-9DD5-4217-BAFD-3309A0F4F64C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssignWpf", "AssignWpf\AssignWpf.csproj", "{8C7EE439-C93D-451E-B902-AE0827D08251}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{12353BB1-9DD5-4217-BAFD-3309A0F4F64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12353BB1-9DD5-4217-BAFD-3309A0F4F64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12353BB1-9DD5-4217-BAFD-3309A0F4F64C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C7EE439-C93D-451E-B902-AE0827D08251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C7EE439-C93D-451E-B902-AE0827D08251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C7EE439-C93D-451E-B902-AE0827D08251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C7EE439-C93D-451E-B902-AE0827D08251}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

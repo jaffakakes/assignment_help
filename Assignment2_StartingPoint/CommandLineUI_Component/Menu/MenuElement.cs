@@ -1,14 +1,14 @@
 ﻿namespace CommandLineUI.Menu
 {
-    abstract class MenuElement
+    public abstract class MenuElement
     {
         public int Id { get; }
-        public string Text { get; }
+        public string Text { get; set; }
 
-        public MenuElement(int id, string text)
+        protected MenuElement(int id, string text)
         {
-            this.Id = id;
-            this.Text = text;
+            Id = id;
+            Text = text;
         }
 
         public abstract void Print(string indent);
