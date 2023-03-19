@@ -25,10 +25,10 @@ namespace CommandLineUI.Presenters
                         });
 
                 List<string> lines = new List<string>(loans.Count + 2);
-                lines.Add("\nCurrent loans");
-                lines.Add(string.Format("\t{0, -20} {1, -20} {2, -12} {3, -12} {4, -8}", "Title", "Borrower", "Loan date", "Due date", "Renewals"));
+               
+             
                 lines.AddRange(printer.Lines);
-                lines.Add($"\nCurrently, {counter.NumberOfMembersWithLoans} members have loans");
+             
 
                 return new CommandLineViewData(lines);
             }

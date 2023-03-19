@@ -13,8 +13,7 @@ namespace CommandLineUI.Presenters
             {
                 List<MemberDTO> members = ((MemberDTO_List)DataToPresent).List;
                 List<string> lines = new List<string>(members.Count + 2);
-                lines.Add("\nAll members");
-                lines.Add(string.Format("\t{0, -4} {1}", "ID", "Name"));
+            
 
                 members.ForEach(m => lines.Add(DisplayMember(m)));
 
@@ -24,9 +23,8 @@ namespace CommandLineUI.Presenters
 
         private string DisplayMember(MemberDTO m)
         {
-            return string.Format(
-                "\t{0, -4} {1}",
-                m.ID,
+            return string.Join(",",
+                m.ID.ToString().PadRight(4),
                 m.Name);
         }
     }

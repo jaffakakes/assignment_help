@@ -1,5 +1,4 @@
 ﻿using DTOs;
-using System.Collections.Generic;
 using UseCase;
 
 namespace CommandLineUI.Presenters
@@ -13,8 +12,7 @@ namespace CommandLineUI.Presenters
             {
                 List<BookDTO> books = ((BookDTO_List)DataToPresent).List;
                 List<string> lines = new List<string>(books.Count + 2);
-                lines.Add("\nAll books");
-                lines.Add(string.Format("\t{0, -4} {1, -20} {2, -20} {3, -15} {4}", "ID", "Title", "Author", "ISBN", "Status"));
+             
 
                 books.ForEach(b => lines.Add(DisplayBook(b)));
 
@@ -24,13 +22,12 @@ namespace CommandLineUI.Presenters
 
         private string DisplayBook(BookDTO b)
         {
-            return string.Format(
-                "\t{0, -4} {1, -20} {2, -20} {3, -15} {4}",
-                b.Id,
-                b.Title,
-                b.Author,
-                b.ISBN,
-                b.State);
+            return string.Join(",",
+      b.Id.ToString().PadRight(4),
+      b.Title.PadRight(20),
+      b.Author.PadRight(20),
+      b.ISBN.PadRight(15),
+      b.State);
         }
     }
 }

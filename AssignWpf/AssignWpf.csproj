@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Assignment2_StartingPoint\Assignment2_StartingPoint.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PropertyPageSchema Remove="Resource.xaml" />
+  </ItemGroup>
+
 </Project>

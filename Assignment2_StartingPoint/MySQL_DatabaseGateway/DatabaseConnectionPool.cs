@@ -74,7 +74,7 @@ namespace DatabaseGateway
         protected MySqlConnection CreateConnection()
         {
             string DB_CONNECTION_STRING
-                = "server=localhost;port=3306;user=root;password=;database=assignment;";
+                = "server=localhost;port=3306;user=root;password=123789;database=assignment;";
 
             MySqlConnection conn = null;
 
