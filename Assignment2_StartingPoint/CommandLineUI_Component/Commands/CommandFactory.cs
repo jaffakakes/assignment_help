@@ -1,6 +1,8 @@
-﻿namespace CommandLineUI.Commands
+﻿
+
+namespace CommandLineUI.Commands
 {
-    public class CommandFactory
+    public class CommandFactory : ICommandFactory
     {
 
 

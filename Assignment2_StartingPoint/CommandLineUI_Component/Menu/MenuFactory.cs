@@ -1,6 +1,6 @@
 ﻿namespace CommandLineUI.Menu
 {
-    public class MenuFactory
+    public class MenuFactory : IMenuFactory
     {
         public static MenuFactory INSTANCE { get; } = new MenuFactory();
 
@@ -11,7 +11,7 @@
             menu = CreateMenu();
         }
 
-        public MenuElement Create()
+        public Menus Create()
         {
             return menu;
         }

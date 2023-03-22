@@ -1,11 +1,12 @@
 ﻿
 using CommandLineUI.Menu;
-using System.Collections.Generic;
+using AssignWpf.Domain;
 using System.Windows.Controls;
 
 namespace AssignWpf
 {
-    public class MenuUI
+    public class MenuUI: IMenuUI
+
     {
         private Menus _menu;
 
