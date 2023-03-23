@@ -3,8 +3,6 @@ using System.Windows.Controls;
 using CommandLineUI.Menu;
 using CommandLineUI;
 using CommandLineUI.Commands;
-using DTOs;
-using System.Collections.ObjectModel;
 using AssignWpf.Services;
 using AssignWpf.Domain;
 using System.Collections.Generic;
