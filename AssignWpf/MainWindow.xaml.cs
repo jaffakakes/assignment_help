@@ -6,6 +6,7 @@ using CommandLineUI.Commands;
 using AssignWpf.Services;
 using AssignWpf.Domain;
 using System.Collections.Generic;
+using ClientSide;
 
 namespace AssignWpf
 {
@@ -16,6 +17,7 @@ namespace AssignWpf
         private readonly IMenuUI menuUI;
         private readonly MenuSelectionHandler menuSelectionHandler;
         private readonly Dictionary<int, IMenuItemAction> menuItemActions;
+        private ServerConnection serverConnection;
         public TextBlock ResponseTextBlock => responseTextBlock;
 
 
@@ -23,6 +25,8 @@ namespace AssignWpf
         public MainWindow(ICommandFactory commandFactory, IDtoConverter dtoConverter, IMenuFactory menuFactory, IMenuUI menuUI)
         {
             InitializeComponent();
+            serverConnection = new ServerConnection("127.0.0.1", 4444); // Replace with your server's address and port
+            serverConnection.Connect();
 
             this.commandFactory = commandFactory;
             this.dtoConverter = dtoConverter;
@@ -37,7 +41,7 @@ namespace AssignWpf
             { RequestUseCase.RENEW_LOAN, new ShowPopupAction(this, RequestUseCase.RENEW_LOAN) },
             { RequestUseCase.EXIT, new ExitAction(this) }
          };
-            menuSelectionHandler = new MenuSelectionHandler(commandFactory, dtoConverter, menuItemActions, this);
+            menuSelectionHandler = new MenuSelectionHandler(commandFactory, dtoConverter, menuItemActions, this, serverConnection);
 
             Menus menu = (Menus)menuFactory.Create();
             menuUI.DisplayInListBox(menuListBox);

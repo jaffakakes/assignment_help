@@ -8,6 +8,7 @@ namespace AssignWpf.Domain
 {
     public interface IMenuItemAction
     {
-        void Execute();
+        void Execute(List<string> serverResponse);
     }
+
 }

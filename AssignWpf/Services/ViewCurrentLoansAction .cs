@@ -3,6 +3,8 @@ using CommandLineUI.Commands;
 using CommandLineUI;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace AssignWpf.Services
 {
@@ -19,8 +21,9 @@ namespace AssignWpf.Services
             this.responseDataGrid = responseDataGrid;
         }
 
-        public void Execute()
+        public void Execute(List<string> serverResponse)
         {
+            MessageBox.Show(string.Join("\n", serverResponse));
             Command command = commandFactory.CreateCommand(RequestUseCase.VIEW_CURRENT_LOANS);
             command.Execute();
             string result = command.GetResult();

@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2_StartingPoint",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2_StartingPoint_Tests", "Assignment2_StartingPoint_Tests\Assignment2_StartingPoint_Tests.csproj", "{12353BB1-9DD5-4217-BAFD-3309A0F4F64C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssignWpf", "AssignWpf\AssignWpf.csproj", "{8C7EE439-C93D-451E-B902-AE0827D08251}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssignWpf", "AssignWpf\AssignWpf.csproj", "{8C7EE439-C93D-451E-B902-AE0827D08251}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{71FCAF95-BC08-4D5C-A9CA-B104206BDE80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8C7EE439-C93D-451E-B902-AE0827D08251}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C7EE439-C93D-451E-B902-AE0827D08251}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C7EE439-C93D-451E-B902-AE0827D08251}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71FCAF95-BC08-4D5C-A9CA-B104206BDE80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71FCAF95-BC08-4D5C-A9CA-B104206BDE80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71FCAF95-BC08-4D5C-A9CA-B104206BDE80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71FCAF95-BC08-4D5C-A9CA-B104206BDE80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,5 @@
 ﻿using AssignWpf.Domain;
-
+using System.Collections.Generic;
 
 namespace AssignWpf.Services
 {
@@ -14,8 +14,9 @@ namespace AssignWpf.Services
             this.selectedCommand = selectedCommand;
         }
 
-        public void Execute()
+        public void Execute(List<string> serverResponse)
         {
+    
             PopupWindow popupWindow = new PopupWindow(mainWindow);
             popupWindow.SelectedCommand = selectedCommand;
             popupWindow.ShowDialog();

@@ -16,7 +16,7 @@ namespace AssignWpf.Services
             this.mainWindow = mainWindow;
         }
 
-        public void Execute()
+        public void Execute(List<string> serverResponse)
         {
             mainWindow.Close();
         }

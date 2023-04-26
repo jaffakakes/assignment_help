@@ -3,6 +3,7 @@ using CommandLineUI.Commands;
 using CommandLineUI.Menu;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using ClientSide;
 
 namespace AssignWpf.Services
 {
@@ -12,13 +13,15 @@ namespace AssignWpf.Services
         private IDtoConverter dtoConverter;
         private Dictionary<int, IMenuItemAction> menuItemActions;
         private MainWindow mainWindow;
+        private ServerConnection serverConnection;
 
-        public MenuSelectionHandler(ICommandFactory commandFactory, IDtoConverter dtoConverter, Dictionary<int, IMenuItemAction> menuItemActions, MainWindow mainWindow)
+        public MenuSelectionHandler(ICommandFactory commandFactory, IDtoConverter dtoConverter, Dictionary<int, IMenuItemAction> menuItemActions, MainWindow mainWindow, ServerConnection serverConnection)
         {
             this.commandFactory = commandFactory;
             this.dtoConverter = dtoConverter;
             this.menuItemActions = menuItemActions;
             this.mainWindow = mainWindow;
+            this.serverConnection = serverConnection;
         }
 
         public void MenuListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -31,12 +34,15 @@ namespace AssignWpf.Services
 
                 if (menuItemActions.ContainsKey(menuItem.Id))
                 {
-                    menuItemActions[menuItem.Id].Execute();
+                    // Send the action key to the server and get the server's response
+                    List<string> serverResponse = serverConnection.SendAction(menuItem.Id);
+
+                    // Pass the server's response to the Execute() method of the corresponding menu item action
+                    menuItemActions[menuItem.Id].Execute(serverResponse);
                 }
 
-                menuListBox.SelectedItem = null; 
+                menuListBox.SelectedItem = null;
             }
         }
     }
-
 }
