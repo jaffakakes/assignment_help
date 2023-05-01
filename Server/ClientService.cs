@@ -1,6 +1,7 @@
 ﻿using System.Net.Sockets;
 using System.Text.Json;
 using CommandLineUI;
+using CommandLineUI.Commands;
 namespace ServerSide
 {
     class ClientService
@@ -22,16 +23,17 @@ namespace ServerSide
         private NetworkStream stream;
         public StreamReader reader { get; private set; }
         public StreamWriter writer { get; private set; }
-
         private RemoveClient removeMe;
+        private ICommandFactory commandFactory;
 
-        public ClientService(Socket socket, RemoveClient rc)
+        public ClientService(Socket socket, RemoveClient rc, ICommandFactory commandFactory)
         {
             this.socket = socket;
             removeMe = rc;
             stream = new NetworkStream(socket);
             reader = new StreamReader(stream, System.Text.Encoding.UTF8);
             writer = new StreamWriter(stream, System.Text.Encoding.UTF8);
+            this.commandFactory = commandFactory;
         }
         public void InteractWithClient()
         {
@@ -55,13 +57,19 @@ namespace ServerSide
             //            Console.WriteLine("Goodbye!");
         }
 
-        private List<string> ProcessClientMessage(string clientMessage)
+        public List<string> ProcessClientMessage(string clientMessage)
         {
             Console.WriteLine("Client says: " + clientMessage);
             int key;
             if (int.TryParse(clientMessage, out key) && menuActions.ContainsKey(key))
             {
-                return new List<string>() { key.ToString() };
+                // Create and execute the command
+                Command command = commandFactory.CreateCommand(key);
+                command.Execute();
+                string result = command.GetResult();
+
+                // Return the result of the command
+                return new List<string>() { result };
             }
             else
             {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-
+using CommandLineUI.Commands;
 namespace ServerSide
 {
     delegate void RemoveClient(ClientService c);
@@ -21,14 +21,14 @@ namespace ServerSide
             Console.WriteLine("Listening....");
         }
 
-        public void Start()
+        public void Start(ICommandFactory commandFactory)
         {
             tcpListener.Start();
 
             while (true)
             {
                 Socket s = tcpListener.AcceptSocket();  //blocks until a connection is made
-                ClientService clientService = new ClientService(s, RemoveClient);
+                ClientService clientService = new ClientService(s, RemoveClient, commandFactory);
                 clientServices.Add(clientService);
                 Task.Run(clientService.InteractWithClient);
             }

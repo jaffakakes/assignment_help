@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿using CommandLineUI.Commands;
 namespace ServerSide
 {
     class Program
@@ -8,8 +7,9 @@ namespace ServerSide
         {
             Console.WriteLine("Server has started!");
             MyServer srvr = new MyServer();
+            ICommandFactory commandFactory = new CommandFactory(); // Create your CommandFactory here
 
-            srvr.Start(); // a synchronous call
+            srvr.Start(commandFactory); // Pass CommandFactory to Start
 
             srvr.Stop();
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using CommandLineUI.Commands;
+using System.Collections.Generic;
 
 
 namespace AssignWpf
@@ -8,14 +9,16 @@ namespace AssignWpf
     public partial class PopupWindow : Window
     {
         private MainWindow mainWindow;
+        private List<string> serverResponse;
 
         public int SelectedCommand { get; set; }
         public string Response { get; private set; }
 
-        public PopupWindow(MainWindow mainWindow)
+        public PopupWindow(MainWindow mainWindow, List<string> serverResponse)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
+            this.serverResponse = serverResponse;
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
@@ -26,7 +29,7 @@ namespace AssignWpf
                 int number2 = int.Parse(numberTextBox2.Text);
 
                 CommandFactory commandFactory = new CommandFactory();
-                Command command = commandFactory.CreateCommand(SelectedCommand, number1, number2);
+                Command command = commandFactory.CreateCommand(int.Parse(serverResponse[0]), number1, number2);
 
                 // Execute the command
                 command.Execute();

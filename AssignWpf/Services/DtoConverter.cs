@@ -62,16 +62,25 @@ namespace AssignWpf.Services
             for (int i = 0; i < lines.Length; i++)
             {
                 Debug.WriteLine("Processing line " + (i + 1) + ": " + lines[i].Trim());
-                // Split the line using a regular expression that matches multiple spaces
-                string[] parts = Regex.Split(lines[i], @"\s\s+");
+                // Split the line using a comma
+                string[] parts = lines[i].Split(',');
 
-                string title = parts[0].Trim();
-                string borrower = parts[1].Trim();
-                DateTime loanDate = DateTime.Parse(parts[2].Trim());
-                DateTime dueDate = DateTime.Parse(parts[3].Trim());
-                int renewals = int.Parse(parts[4].Trim());
+                // Check if the parts array contains the expected number of elements
+                if (parts.Length >= 5)
+                {
+                    string title = parts[0].Trim();
+                    string borrower = parts[1].Trim();
+                    DateTime loanDate = DateTime.Parse(parts[2].Trim());
+                    DateTime dueDate = DateTime.Parse(parts[3].Trim());
+                    int renewals = int.Parse(parts[4].Trim());
 
-                loanDisplayDTOs.Add(new LoanDisplayDTO(title, borrower, loanDate, dueDate, renewals));
+                    loanDisplayDTOs.Add(new LoanDisplayDTO(title, borrower, loanDate, dueDate, renewals));
+                }
+                else
+                {
+                    // Log an error or throw an exception if the parts array does not contain the expected number of elements
+                    Debug.WriteLine("Error: The input line does not contain the expected number of elements.");
+                }
             }
 
             return loanDisplayDTOs;

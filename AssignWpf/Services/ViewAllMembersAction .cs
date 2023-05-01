@@ -1,7 +1,6 @@
 ﻿using AssignWpf.Domain;
 using CommandLineUI.Commands;
-using CommandLineUI;
-using DTOs;
+using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Collections.Generic;
@@ -24,12 +23,15 @@ namespace AssignWpf.Services
 
         public void Execute(List<string> serverResponse)
         {
-           MessageBox.Show(string.Join("\n", serverResponse));
-            Command command = commandFactory.CreateCommand(int.Parse(serverResponse[0]));
-            command.Execute();
-            string result = command.GetResult();
-            ObservableCollection<MemberDTO> membersDTOs = dtoConverter.ConvertResultToMemberDTOs(result);
-            responseDataGrid.ItemsSource = membersDTOs;
+            // Assume that the server returns the result of the command as a JSON string
+            string result = serverResponse[0];
+            Debug.WriteLine(serverResponse[0]);
+            Debug.WriteLine(serverResponse);
+
+
+
+            ObservableCollection<LoanDisplayDTO> loanDTOs = dtoConverter.ConvertResultToLoanDTOs(result);
+            responseDataGrid.ItemsSource = loanDTOs;
         }
     }
 }
