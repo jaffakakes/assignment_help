@@ -24,8 +24,8 @@ namespace AssignWpf.Services
 
         public void Execute(List<string> serverResponse)
         {
-            MessageBox.Show(string.Join("\n", serverResponse));
-            Command command = commandFactory.CreateCommand(RequestUseCase.VIEW_ALL_MEMBERS);
+           MessageBox.Show(string.Join("\n", serverResponse));
+            Command command = commandFactory.CreateCommand(int.Parse(serverResponse[0]));
             command.Execute();
             string result = command.GetResult();
             ObservableCollection<MemberDTO> membersDTOs = dtoConverter.ConvertResultToMemberDTOs(result);

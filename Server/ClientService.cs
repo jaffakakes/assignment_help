@@ -61,7 +61,7 @@ namespace ServerSide
             int key;
             if (int.TryParse(clientMessage, out key) && menuActions.ContainsKey(key))
             {
-                return menuActions[key];
+                return new List<string>() { key.ToString() };
             }
             else
             {
