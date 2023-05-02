@@ -23,10 +23,7 @@ namespace AssignWpf.Services
 
         public void Execute(List<string> serverResponse)
         {
-            MessageBox.Show(string.Join("\n", serverResponse));
-            Command command = commandFactory.CreateCommand(int.Parse(serverResponse[0]));
-            command.Execute();
-            string result = command.GetResult();
+            string result = serverResponse[0];
             ObservableCollection<LoanDisplayDTO> loanDTO = dtoConverter.ConvertResultToLoanDTOs(result);
             responseDataGrid.ItemsSource = loanDTO;
         }

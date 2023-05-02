@@ -2,6 +2,7 @@
 using System.Text.Json;
 using CommandLineUI;
 using CommandLineUI.Commands;
+using System.Diagnostics;
 namespace ServerSide
 {
     class ClientService
@@ -63,6 +64,7 @@ namespace ServerSide
             int key;
             if (int.TryParse(clientMessage, out key) && menuActions.ContainsKey(key))
             {
+                Debug.WriteLine(key);
                 // Create and execute the command
                 Command command = commandFactory.CreateCommand(key);
                 command.Execute();

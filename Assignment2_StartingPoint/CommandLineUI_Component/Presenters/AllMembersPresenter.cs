@@ -1,5 +1,4 @@
 ﻿using DTOs;
-using System.Collections.Generic;
 using UseCase;
 
 namespace CommandLineUI.Presenters

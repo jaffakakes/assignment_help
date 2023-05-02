@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using CommandLineUI.Commands;
+using System.Diagnostics;
 namespace ServerSide
 {
     delegate void RemoveClient(ClientService c);

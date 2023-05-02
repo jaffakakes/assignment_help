@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Collections.Generic;
-using System.Windows;
+
 
 namespace AssignWpf.Services
 {
@@ -30,7 +30,7 @@ namespace AssignWpf.Services
 
 
 
-            ObservableCollection<LoanDisplayDTO> loanDTOs = dtoConverter.ConvertResultToLoanDTOs(result);
+            ObservableCollection<DTOs.MemberDTO> loanDTOs = dtoConverter.ConvertResultToMemberDTOs(result);
             responseDataGrid.ItemsSource = loanDTOs;
         }
     }
