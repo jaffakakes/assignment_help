@@ -1,4 +1,5 @@
 ﻿using AssignWpf.Domain;
+using ClientSide;
 using System.Collections.Generic;
 using System.Windows;
 namespace AssignWpf.Services
@@ -6,27 +7,27 @@ namespace AssignWpf.Services
     public class ShowPopupAction : IMenuItemAction
     {
         private MainWindow mainWindow;
-        private int selectedCommand;
-        private List<string> serverResponse;
+        private ServerConnection serverConnection;
 
-        public ShowPopupAction(MainWindow mainWindow)
+        public ShowPopupAction(MainWindow mainWindow, ServerConnection serverConnection)
         {
             this.mainWindow = mainWindow;
-            this.selectedCommand = selectedCommand;
+            this.serverConnection = serverConnection;
         }
+    
+    
 
-        public void Execute(List<string> serverResponse)
+    public void Execute(List<string> serverResponse)
+    {
+     
+
+        PopupWindow popupWindow = new PopupWindow(mainWindow, serverConnection);
+        popupWindow.ShowDialog();
+
+        if (!string.IsNullOrEmpty(popupWindow.Response))
         {
-            MessageBox.Show(string.Join("\n", serverResponse));
-
-            PopupWindow popupWindow = new PopupWindow(mainWindow, serverResponse);
-            popupWindow.SelectedCommand = selectedCommand;
-            popupWindow.ShowDialog();
-
-            if (!string.IsNullOrEmpty(popupWindow.Response))
-            {
-                mainWindow.ResponseTextBlock.Text = popupWindow.Response;
-            }
+            mainWindow.ResponseTextBlock.Text = popupWindow.Response;
         }
     }
+}
 }

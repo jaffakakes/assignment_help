@@ -36,9 +36,9 @@ namespace AssignWpf
             { RequestUseCase.VIEW_CURRENT_LOANS, new ViewCurrentLoansAction(commandFactory, dtoConverter, responseDataGrid) },
             { RequestUseCase.VIEW_ALL_MEMBERS, new ViewAllMembersAction(commandFactory, dtoConverter, responseDataGrid) },
             { RequestUseCase.VIEW_ALL_BOOKS, new ViewAllBooksAction(commandFactory, dtoConverter, responseDataGrid) },
-            { RequestUseCase.BORROW_BOOK, new ShowPopupAction(this) },
-            { RequestUseCase.RETURN_BOOK, new ShowPopupAction(this) },
-            { RequestUseCase.RENEW_LOAN, new ShowPopupAction(this) },
+            { RequestUseCase.BORROW_BOOK, new ShowPopupAction(this, serverConnection) },
+            { RequestUseCase.RETURN_BOOK, new ShowPopupAction(this, serverConnection) },
+            { RequestUseCase.RENEW_LOAN, new ShowPopupAction(this, serverConnection) },
             { RequestUseCase.EXIT, new ExitAction(this) }
          };
             menuSelectionHandler = new MenuSelectionHandler(commandFactory, dtoConverter, menuItemActions, this, serverConnection);
@@ -49,6 +49,7 @@ namespace AssignWpf
 
         private void MenuListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             menuSelectionHandler.MenuListBox_SelectionChanged(sender, e);
         }
 

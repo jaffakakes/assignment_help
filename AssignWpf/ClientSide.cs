@@ -3,6 +3,8 @@ using System.IO;
 using System.Net.Sockets;
 using System.Text.Json;
 using System.Collections.Generic;
+using AssignWpf;
+using System.Diagnostics;
 
 namespace ClientSide
 {
@@ -28,9 +30,22 @@ namespace ClientSide
             writer = new StreamWriter(stream);
         }
 
-        public List<string> SendAction(int actionKey)
+        public List<string> SendAction(int actionKey, int number1 = 0, int number2 = 0)
         {
-            writer.WriteLine(actionKey);
+            // Create a new Request object
+            Request request = new Request
+            {
+                MenuChoice = actionKey,
+                Number1 = number1,
+                Number2 = number2
+            };
+            Debug.WriteLine(request);
+
+            // Serialize the request object to a JSON string
+            string requestJson = JsonSerializer.Serialize(request);
+
+            // Write the JSON string to the stream
+            writer.WriteLine(requestJson);
             writer.Flush();
 
             string response = reader.ReadLine();

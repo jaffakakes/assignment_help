@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Windows;
+using System.Diagnostics;
 
 namespace AssignWpf.Services
 {
@@ -24,6 +25,7 @@ namespace AssignWpf.Services
         public void Execute(List<string> serverResponse)
         {
             string result = serverResponse[0];
+            Debug.WriteLine(result);
             ObservableCollection<LoanDisplayDTO> loanDTO = dtoConverter.ConvertResultToLoanDTOs(result);
             responseDataGrid.ItemsSource = loanDTO;
         }

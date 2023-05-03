@@ -2,7 +2,7 @@
 using System.Windows;
 using CommandLineUI.Commands;
 using System.Collections.Generic;
-
+using ClientSide;
 
 namespace AssignWpf
 {
@@ -10,15 +10,17 @@ namespace AssignWpf
     {
         private MainWindow mainWindow;
         private List<string> serverResponse;
+        private ServerConnection serverConnection;
 
         public int SelectedCommand { get; set; }
         public string Response { get; private set; }
 
-        public PopupWindow(MainWindow mainWindow, List<string> serverResponse)
+        public PopupWindow(MainWindow mainWindow, ServerConnection serverConnection)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
             this.serverResponse = serverResponse;
+            this.serverConnection = serverConnection;
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
@@ -28,14 +30,10 @@ namespace AssignWpf
                 int number1 = int.Parse(numberTextBox1.Text);
                 int number2 = int.Parse(numberTextBox2.Text);
 
-                CommandFactory commandFactory = new CommandFactory();
-                Command command = commandFactory.CreateCommand(int.Parse(serverResponse[0]), number1, number2);
+                List<string> serverResponse = serverConnection.SendAction(SelectedCommand, number1, number2);
 
-                // Execute the command
-                command.Execute();
 
-                // Get the result
-                string result = command.GetResult();
+                string result = serverResponse[0];
 
                 // Set the response
                 Response = $"Result: {result}";

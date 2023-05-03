@@ -3,6 +3,9 @@ using System.Text.Json;
 using CommandLineUI;
 using CommandLineUI.Commands;
 using System.Diagnostics;
+using Mysqlx;
+using Server;
+
 namespace ServerSide
 {
     class ClientService
@@ -61,14 +64,21 @@ namespace ServerSide
         public List<string> ProcessClientMessage(string clientMessage)
         {
             Console.WriteLine("Client says: " + clientMessage);
-            int key;
-            if (int.TryParse(clientMessage, out key) && menuActions.ContainsKey(key))
+
+            var clientData = JsonSerializer.Deserialize<ClientMessage>(clientMessage);
+            var key = clientData.MenuChoice;
+            if (menuActions.ContainsKey(key))
             {
                 Debug.WriteLine(key);
+                Debug.WriteLine(clientData.Number1);
+                Debug.WriteLine(clientData.Number2);
+
                 // Create and execute the command
-                Command command = commandFactory.CreateCommand(key);
+                Command command = commandFactory.CreateCommand(key, clientData.Number1, clientData.Number2);
                 command.Execute();
                 string result = command.GetResult();
+                
+
 
                 // Return the result of the command
                 return new List<string>() { result };
