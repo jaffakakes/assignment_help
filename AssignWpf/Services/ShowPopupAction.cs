@@ -19,7 +19,7 @@ namespace AssignWpf.Services
 
     public void Execute(List<string> serverResponse)
     {
-     
+      
 
         PopupWindow popupWindow = new PopupWindow(mainWindow, serverConnection);
         popupWindow.ShowDialog();

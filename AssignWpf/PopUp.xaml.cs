@@ -21,6 +21,7 @@ namespace AssignWpf
             this.mainWindow = mainWindow;
             this.serverResponse = serverResponse;
             this.serverConnection = serverConnection;
+
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
