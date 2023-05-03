@@ -61,25 +61,31 @@ namespace AssignWpf.Services
             // Update the loop condition to process single line input as well
             for (int i = 0; i < lines.Length; i++)
             {
-                Debug.WriteLine("Processing line " + (i + 1) + ": " + lines[i].Trim());
+              
                 // Split the line using a comma
-                string[] parts = lines[i].Split(',');
+                string[] parts = lines[i].Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
+
+                Debug.WriteLine(parts[0]);
+                Debug.WriteLine(parts[1]);
+                Debug.WriteLine(parts[2]);
+                Debug.WriteLine(parts[3]);
+                Debug.WriteLine(parts[4]);
 
                 // Check if the parts array contains the expected number of elements
                 if (parts.Length >= 5)
                 {
-                    string title = parts[0].Trim();
-                    string borrower = parts[1].Trim();
-                    DateTime loanDate = DateTime.Parse(parts[2].Trim());
-                    DateTime dueDate = DateTime.Parse(parts[3].Trim());
-                    int renewals = int.Parse(parts[4].Trim());
+                    string title = parts[0] + " " + parts[1]; // assuming title can have a space
+                    string borrower = parts[2].Trim();
+                    DateTime loanDate = DateTime.Parse(parts[3].Trim());
+                    DateTime dueDate = DateTime.Parse(parts[4].Trim());
+                    int renewals = int.Parse(parts[5].Trim());
 
                     loanDisplayDTOs.Add(new LoanDisplayDTO(title, borrower, loanDate, dueDate, renewals));
                 }
                 else
                 {
                     // Log an error or throw an exception if the parts array does not contain the expected number of elements
-                    Debug.WriteLine("Error: The input line does not contain the expected number of elements.");
+                    Debug.WriteLine($"Error on line {i + 1}: The input line does not contain the expected number of elements. Line content: \"{lines[i].Trim()}\"");
                 }
             }
 

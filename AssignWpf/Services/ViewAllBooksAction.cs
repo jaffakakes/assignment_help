@@ -22,7 +22,7 @@ namespace AssignWpf.Services
             this.responseDataGrid = responseDataGrid;
         }
 
-        public void Execute(List<string> serverResponse)
+        public void Execute(int commandId, List<string> serverResponse)
         {
  
             string result = serverResponse[0];

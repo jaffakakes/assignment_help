@@ -18,6 +18,7 @@ namespace AssignWpf
         private readonly MenuSelectionHandler menuSelectionHandler;
         private readonly Dictionary<int, IMenuItemAction> menuItemActions;
         private ServerConnection serverConnection;
+
         public TextBlock ResponseTextBlock => responseTextBlock;
 
 

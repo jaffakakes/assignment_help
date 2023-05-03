@@ -38,7 +38,7 @@ namespace AssignWpf.Services
                     List<string> serverResponse = serverConnection.SendAction(menuItem.Id);
 
                     // Pass the server's response to the Execute() method of the corresponding menu item action
-                    menuItemActions[menuItem.Id].Execute(serverResponse);
+                    menuItemActions[menuItem.Id].Execute(menuItem.Id, serverResponse);
                 }
 
                 menuListBox.SelectedItem = null;

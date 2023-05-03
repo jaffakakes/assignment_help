@@ -8,7 +8,7 @@ namespace AssignWpf.Services
     {
         private MainWindow mainWindow;
         private ServerConnection serverConnection;
-
+        public int SelectedCommand { get; private set; }
         public ShowPopupAction(MainWindow mainWindow, ServerConnection serverConnection)
         {
             this.mainWindow = mainWindow;
@@ -17,11 +17,11 @@ namespace AssignWpf.Services
     
     
 
-    public void Execute(List<string> serverResponse)
+    public void Execute(int commandId, List<string> serverResponse)
     {
-      
 
-        PopupWindow popupWindow = new PopupWindow(mainWindow, serverConnection);
+       
+        PopupWindow popupWindow = new PopupWindow(mainWindow, serverConnection, commandId);
         popupWindow.ShowDialog();
 
         if (!string.IsNullOrEmpty(popupWindow.Response))

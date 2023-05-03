@@ -15,12 +15,13 @@ namespace AssignWpf
         public int SelectedCommand { get; set; }
         public string Response { get; private set; }
 
-        public PopupWindow(MainWindow mainWindow, ServerConnection serverConnection)
+        public PopupWindow(MainWindow mainWindow, ServerConnection serverConnection, int selectedCommand)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
             this.serverResponse = serverResponse;
             this.serverConnection = serverConnection;
+            SelectedCommand = selectedCommand;
 
         }
 
@@ -37,7 +38,7 @@ namespace AssignWpf
                 string result = serverResponse[0];
 
                 // Set the response
-                Response = $"Result: {result}";
+                Response = result;
 
                 // Close the popup window
                 this.Close();
