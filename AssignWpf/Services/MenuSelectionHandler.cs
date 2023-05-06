@@ -35,7 +35,7 @@ namespace AssignWpf.Services
                 if (menuItemActions.ContainsKey(menuItem.Id))
                 {
                     // Send the action key to the server and get the server's response
-                    List<string> serverResponse = serverConnection.SendAction(menuItem.Id);
+                    List<string> serverResponse =  serverConnection.SendAction(menuItem.Id);
 
                     // Pass the server's response to the Execute() method of the corresponding menu item action
                     menuItemActions[menuItem.Id].Execute(menuItem.Id, serverResponse);

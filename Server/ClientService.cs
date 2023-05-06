@@ -20,6 +20,7 @@ namespace ServerSide
             { RequestUseCase.RETURN_BOOK, new List<string>(){ "Returning a book..." } },
             { RequestUseCase.Rapid_Request, new List<string>(){ "Rapid Request..." } },
             { RequestUseCase.RENEW_LOAN, new List<string>(){ "Renewing a loan..." } },
+           // { RequestUseCase.Rapid_Request, new List<string>(){ "Rapid Request..." } },
             { RequestUseCase.EXIT, new List<string>(){ "Exiting the application..." } }
         };
 

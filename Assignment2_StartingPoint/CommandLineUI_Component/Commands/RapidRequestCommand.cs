@@ -18,7 +18,7 @@ namespace CommandLineUI.Commands
             {
                 tasks.Add(Task.Run(() =>
                 {
-                    return string.Empty;
+                    return $"test{i}";
                 }));
             }
 

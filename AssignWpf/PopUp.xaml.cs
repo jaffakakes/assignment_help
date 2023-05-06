@@ -25,14 +25,14 @@ namespace AssignWpf
 
         }
 
-        private void OkButton_Click(object sender, RoutedEventArgs e)
+        private  void OkButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 int number1 = int.Parse(numberTextBox1.Text);
                 int number2 = int.Parse(numberTextBox2.Text);
 
-                List<string> serverResponse = serverConnection.SendAction(SelectedCommand, number1, number2);
+                List<string> serverResponse =  serverConnection.SendAction(SelectedCommand, number1, number2);
 
 
                 string result = serverResponse[0];

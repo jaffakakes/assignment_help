@@ -40,9 +40,6 @@ namespace CommandLineUI.Commands
                     return new NullCommand();
             }
         }
-        public RapidRequestCommand CreateRapidRequestCommand()
-        {
-            return new RapidRequestCommand();
-        }
+
     }
 }
