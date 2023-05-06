@@ -10,5 +10,6 @@ namespace CommandLineUI.Commands
     public interface ICommandFactory
     {
         Command CreateCommand(int menuChoice, int number1 = 0, int number2 = 0);
+        RapidRequestCommand CreateRapidRequestCommand();
     }
 }

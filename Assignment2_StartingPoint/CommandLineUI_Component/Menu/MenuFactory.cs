@@ -40,6 +40,7 @@
             menu.Add(new MenuItems(RequestUseCase.BORROW_BOOK, "Borrow book"));
             menu.Add(new MenuItems(RequestUseCase.RETURN_BOOK, "Return book"));
             menu.Add(new MenuItems(RequestUseCase.RENEW_LOAN, "Renew loan"));
+            menu.Add(new MenuItems(RequestUseCase.Rapid_Request, "Send Rapid Requests"));
             return menu;
         }
 

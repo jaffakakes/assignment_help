@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Collections.Generic;
 using AssignWpf;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace ClientSide
 {
@@ -28,6 +29,14 @@ namespace ClientSide
             NetworkStream stream = client.GetStream();
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream);
+        }
+        public async Task SendMessage(string message)
+        {
+            if (writer != null)
+            {
+                await writer.WriteLineAsync(message);
+                await writer.FlushAsync();
+            }
         }
 
         public List<string> SendAction(int actionKey, int number1 = 0, int number2 = 0)

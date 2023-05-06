@@ -40,6 +40,7 @@ namespace AssignWpf
             { RequestUseCase.BORROW_BOOK, new ShowPopupAction(this, serverConnection) },
             { RequestUseCase.RETURN_BOOK, new ShowPopupAction(this, serverConnection) },
             { RequestUseCase.RENEW_LOAN, new ShowPopupAction(this, serverConnection) },
+            { RequestUseCase.Rapid_Request, new RapidRequestAction(commandFactory,serverConnection) },
             { RequestUseCase.EXIT, new ExitAction(this) }
          };
             menuSelectionHandler = new MenuSelectionHandler(commandFactory, dtoConverter, menuItemActions, this, serverConnection);

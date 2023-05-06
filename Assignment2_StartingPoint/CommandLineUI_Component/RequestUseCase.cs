@@ -10,7 +10,8 @@
         public const int VIEW_ALL_BOOKS = 4;
         public const int VIEW_ALL_MEMBERS = 5;
         public const int VIEW_CURRENT_LOANS = 6;
-        public const int EXIT = 7;
+        public const int Rapid_Request = 7;
+        public const int EXIT = 8;
 
     }
 }

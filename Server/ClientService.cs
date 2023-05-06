@@ -18,6 +18,7 @@ namespace ServerSide
             { RequestUseCase.VIEW_ALL_BOOKS, new List<string>(){ "Viewing all books..." } },
             { RequestUseCase.BORROW_BOOK, new List<string>(){ "Borrowing a book..." } },
             { RequestUseCase.RETURN_BOOK, new List<string>(){ "Returning a book..." } },
+            { RequestUseCase.Rapid_Request, new List<string>(){ "Rapid Request..." } },
             { RequestUseCase.RENEW_LOAN, new List<string>(){ "Renewing a loan..." } },
             { RequestUseCase.EXIT, new List<string>(){ "Exiting the application..." } }
         };
@@ -47,8 +48,11 @@ namespace ServerSide
                 while (clientMessage != null)
                 {
                     List<string> response = ProcessClientMessage(clientMessage);
-                    writer.WriteLine(JsonSerializer.Serialize(response));
-                    writer.Flush();
+                    if (response != null)
+                    {
+                        writer.WriteLine(JsonSerializer.Serialize(response));
+                        writer.Flush();
+                    }
                     clientMessage = reader.ReadLine();
                 }
             }
@@ -58,12 +62,19 @@ namespace ServerSide
             }
 
             Close();
-            //            Console.WriteLine("Goodbye!");
+            
         }
 
         public List<string> ProcessClientMessage(string clientMessage)
         {
             Console.WriteLine("Client says: " + clientMessage);
+
+            if (clientMessage.StartsWith("Rapid request"))
+            {
+                // Display the received rapid request message and don't send a response
+                Console.WriteLine(clientMessage);
+                return null;
+            }
 
             var clientData = JsonSerializer.Deserialize<ClientMessage>(clientMessage);
             var key = clientData.MenuChoice;
