@@ -36,6 +36,9 @@ namespace CommandLineUI.Commands
                 case RequestUseCase.VIEW_CURRENT_LOANS:
                     return new ViewCurrentLoansCommand();
 
+                case RequestUseCase.Rapid_Request:
+                    return new RapidTesting();
+
                 default:
                     return new NullCommand();
             }

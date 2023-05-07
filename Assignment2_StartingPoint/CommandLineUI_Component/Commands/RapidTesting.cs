@@ -2,17 +2,17 @@
 
 namespace CommandLineUI.Commands
 {
-    class NullCommand : Command
+    class RapidTesting : Command
     {
         private string result;
 
-        public NullCommand()
+        public RapidTesting()
         {
         }
 
         public void Execute()
         {
-            List<string> messages = new List<string>() { "Menu choice not reconised" };
+            List<string> messages = new List<string>() { "Rapid Testing" };
             ConsoleWriter.WriteStrings(messages);
 
             // Store the result as a single string
@@ -25,4 +25,3 @@ namespace CommandLineUI.Commands
         }
     }
 }
-
