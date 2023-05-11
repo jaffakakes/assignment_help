@@ -25,7 +25,7 @@ namespace AssignWpf
 
         }
 
-        private async  void OkButton_Click(object sender, RoutedEventArgs e)
+        private async void OkButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {

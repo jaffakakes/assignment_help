@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using AssignWpf;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Collections.Concurrent;
+using System.Threading;
 
 namespace ClientSide
 {
@@ -16,6 +18,7 @@ namespace ClientSide
         private TcpClient client;
         private StreamReader reader;
         private StreamWriter writer;
+        private Queue<TaskCompletionSource<List<string>>> waitingQueue = new Queue<TaskCompletionSource<List<string>>>();
 
         public ServerConnection(string serverAddress, int serverPort)
         {
@@ -41,7 +44,7 @@ namespace ClientSide
 
 
 
-        private object lockObject = new object();
+        private SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
 
         public async Task<List<string>> SendAction(int actionKey, int number1 = 0, int number2 = 0)
         {
@@ -57,17 +60,27 @@ namespace ClientSide
             // Serialize the request object to a JSON string
             string requestJson = JsonSerializer.Serialize(request);
 
-            lock (lockObject)
+            await semaphore.WaitAsync();
+            try
             {
                 // Write the JSON string to the stream
-                writer.WriteLine(requestJson);
-                writer.Flush();
+                await writer.WriteLineAsync(requestJson);
+                await writer.FlushAsync();
+            }
+            finally
+            {
+                semaphore.Release();
             }
 
             string response;
-            lock (lockObject)
+            await semaphore.WaitAsync();
+            try
             {
-                response = reader.ReadLine();
+                response = await reader.ReadLineAsync();
+            }
+            finally
+            {
+                semaphore.Release();
             }
 
             if (response != null)
@@ -79,6 +92,7 @@ namespace ClientSide
                 return new List<string> { "Error: No response from the server." };
             }
         }
+
 
         public void Disconnect()
         {

@@ -4,6 +4,7 @@ using AssignWpf.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
+using System.Threading;
 
 namespace AssignWpf.Services
 {
@@ -20,18 +21,28 @@ namespace AssignWpf.Services
 
         public async void Execute(int commandId, List<string> serverResponse)
         {
-
+            SemaphoreSlim semaphore = new SemaphoreSlim(10);  // adjust this number to your needs
             List<Task> tasks = new List<Task>();
 
-            for (int i = 1; i <= 20; i++)
+            for (int i = 1; i <= 100; i++)
             {
-                tasks.Add(serverConnection.SendAction(3, 1, 1));
+                await semaphore.WaitAsync();
+                tasks.Add(Task.Run(async () =>
+                {
+                    try
+                    {
+                        await serverConnection.SendAction(3, 1, 1);
+                    }
+                    finally
+                    {
+                        semaphore.Release();
+                    }
+                }));
             }
 
             await Task.WhenAll(tasks);
-
         }
 
-       
+
     }
 }
