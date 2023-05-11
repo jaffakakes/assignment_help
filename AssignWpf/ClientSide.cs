@@ -39,18 +39,11 @@ namespace ClientSide
             }
         }
 
-        public async Task ProcessAndSendMessagesAsync(Queue<string> messageQueue, ServerConnection serverConnection)
-        {
-            while (messageQueue.Count > 0)
-            {
-                string message = messageQueue.Dequeue();
 
-                serverConnection.SendMessage(message);
-                await Task.Delay(100); // Add a delay to control the rate of requests sent
-            }
-        }
 
-        public List<string> SendAction(int actionKey, int number1 = 0, int number2 = 0)
+        private object lockObject = new object();
+
+        public async Task<List<string>> SendAction(int actionKey, int number1 = 0, int number2 = 0)
         {
             // Create a new Request object
             Request request = new Request
@@ -64,11 +57,19 @@ namespace ClientSide
             // Serialize the request object to a JSON string
             string requestJson = JsonSerializer.Serialize(request);
 
-            // Write the JSON string to the stream
-            writer.WriteLine(requestJson);
-            writer.Flush();
+            lock (lockObject)
+            {
+                // Write the JSON string to the stream
+                writer.WriteLine(requestJson);
+                writer.Flush();
+            }
 
-            string response = reader.ReadLine();
+            string response;
+            lock (lockObject)
+            {
+                response = reader.ReadLine();
+            }
+
             if (response != null)
             {
                 return JsonSerializer.Deserialize<List<string>>(response);

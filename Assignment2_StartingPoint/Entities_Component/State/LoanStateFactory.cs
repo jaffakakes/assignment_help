@@ -8,7 +8,7 @@
             {
                 return new NewLoan(numberOfRenewals, dueDate);
             }
-            else if (numberOfRenewals < 3)
+            else if (numberOfRenewals < 100)
             {
                 return new RenewedLoan(numberOfRenewals, dueDate);
             }
